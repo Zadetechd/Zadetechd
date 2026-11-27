@@ -1,0 +1,55 @@
+name: Build ASCII portrait
+
+on:
+  push:
+    paths:
+      - "assets/photo.jpg"
+      - "assets/photo.jpeg"
+      - "assets/photo.png"
+      - "scripts/make_ascii_svg.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ascii-portrait
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install OpenCV
+        run: pip install opencv-python-headless
+
+      - name: Find the photo
+        id: photo
+        run: |
+          for f in assets/photo.jpg assets/photo.jpeg assets/photo.png; do
+            if [ -f "$f" ]; then echo "path=$f" >> "$GITHUB_OUTPUT"; exit 0; fi
+          done
+          echo "No photo found. Upload one as assets/photo.jpg or assets/photo.png"; exit 1
+
+      - name: Build the SVG
+        run: python scripts/make_ascii_svg.py "${{ steps.photo.outputs.path }}" assets/neofetch.svg
+
+      - name: Commit the new SVG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add assets/neofetch.svg
+          if git diff --cached --quiet; then
+            echo "No change to the portrait"; exit 0
+          fi
+          git commit -m "Rebuild ASCII portrait"
+          git push
