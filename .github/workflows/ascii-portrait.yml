@@ -38,12 +38,15 @@ jobs:
           for f in assets/photo.jpg assets/photo.jpeg assets/photo.png; do
             if [ -f "$f" ]; then echo "path=$f" >> "$GITHUB_OUTPUT"; exit 0; fi
           done
-          echo "No photo found. Upload one as assets/photo.jpg or assets/photo.png"; exit 1
+          echo "No photo found, keeping the current portrait."
+          echo "path=" >> "$GITHUB_OUTPUT"
 
       - name: Build the SVG
+        if: steps.photo.outputs.path != ''
         run: python scripts/make_ascii_svg.py "${{ steps.photo.outputs.path }}" assets/neofetch.svg
 
       - name: Commit the new SVG
+        if: steps.photo.outputs.path != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
