@@ -32,6 +32,8 @@ I build full products end to end: the database, the API, the frontend and the AI
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
   <img src="https://img.shields.io/badge/pgvector-336791?style=flat-square&logo=postgresql&logoColor=white"/>
   <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Claude-D97757?style=flat-square&logo=claude&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Claude_Code-D97757?style=flat-square&logo=claude&logoColor=white"/>
   <img src="https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white"/>
   <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
@@ -53,12 +55,20 @@ GourmetGems, Gadget Deals, Number One Catering and Peblo's each run as a separat
 
 | Project | What it is | Built with |
 |---|---|---|
+| **Claude Code agent kit** | My reusable multi-agent build system, installed once and used across all my projects. A `/feature` command runs three subagents: a planner that writes the plan (with a required security section) but no code, an executor that builds one small reviewable chunk at a time, and a reviewer that can only read code and run tests, locked down by a hook so it can never touch a real database or secrets. I approve every plan and every merge. Currently building Therapon and Eggan Estates (below) with it | Claude Code, subagents, hooks, Bash |
 | [**Docs Agent with Evals**](https://github.com/Zadetechd/docs-agent-evals) | A question-answering agent over the FastAPI docs, with a test kit that measures how well it actually works: 28 hand-written questions (simple lookups, multi-step, unanswerable, prompt-injection traps), rule-based scoring, repeated runs and labelled failure causes. Every answer's citations are checked against the text it really retrieved | Python, FastAPI, Postgres + pgvector, Gemini |
 | [**Invoice AI**](https://github.com/Zadetechd/invoice.ai) · [live](https://invoiceai-blue.vercel.app) | Pulls structured data out of invoice images and PDFs, with confidence scores per field and a swappable LLM layer | FastAPI, Gemini vision, React, TypeScript |
 | [**Loure**](https://loure.shop) | My own fashion and accessories store: full admin panel, multi-image product uploads, lookbook sections, and a Gemini script that writes product names and descriptions from photos and lists them in bulk | Next.js, Supabase, Cloudflare R2, Gemini |
 | [**NLR Sepsis Check**](https://nlrsepsis.com) | Free browser tool built from my 202-patient study at KNUST Hospital. Research-based decision support, stores no patient data | HTML, CSS, JavaScript |
 | **Conference room booking** (internal, staff access only) | Booking system for a 60-seat room at a medical complex. A database rule makes double-booking impossible, with an audit log | Next.js, Supabase Postgres |
 | **ICU logbook system** (internal, staff access only) | Data entry and export tool for ICU research logbooks, live at KNUST Hospital | Next.js, Supabase |
+
+### 🔒 In progress (not public yet)
+
+| Project | What it is | Built with |
+|---|---|---|
+| **Therapon** | Hospital management system built to serve many hospitals from one platform, with each hospital's data kept apart at the database level. Works offline for hours and syncs when the connection returns: tested by cutting the network, with offline writes landing exactly once and the audit log still recording who made them. Login, patient registration and the patient queue are done | Next.js, TypeScript, Supabase Postgres, PowerSync |
+| **Eggan Estates** | Real estate listings platform for agents, agencies and landlords in Ghana. Every listing needs a walkthrough video filmed with a one-time code on screen, to stop fake listings. Includes search and filters, agency team accounts, WhatsApp contact and GHS/USD pricing | Next.js, Express, TypeScript, Postgres, Cloudflare R2 & Stream |
 
 ### 🐍 Contribution snake
 
