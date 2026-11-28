@@ -28,7 +28,7 @@ INFO = [
     ("Frontend", "TypeScript, React, Next.js, Tailwind"),
     ("Backend", "Python, FastAPI, Node, Express"),
     ("Data", "Supabase, PostgreSQL"),
-    ("AI", "Gemini, LLM pipelines, evals"),
+    ("AI", "Claude, Gemini, agents, evals"),
     ("Uptime", "4+ years shipping"),
 ]
 HANDLE = "godwin@eggan-syndicate"
@@ -146,10 +146,6 @@ def build_svg(rows):
     <stop offset="0" stop-color="#39d353" stop-opacity="0"/>
     <stop offset="1" stop-color="#39d353" stop-opacity="0.25"/>
   </linearGradient>
-  <radialGradient id="halo" cx="0.5" cy="0.45" r="0.55">
-    <stop offset="0" stop-color="#39d353" stop-opacity="0.13"/>
-    <stop offset="1" stop-color="#39d353" stop-opacity="0"/>
-  </radialGradient>
   <clipPath id="asciiArea"><rect x="{PAD - 6}" y="{ay - 6}" width="{ascii_w + 12}" height="{ascii_h + 12}"/></clipPath>
   <pattern id="crt" width="4" height="3" patternUnits="userSpaceOnUse">
     <rect width="4" height="1" fill="#000" opacity="0.3"/>
@@ -176,13 +172,6 @@ def build_svg(rows):
     for i, c in enumerate(["#ff5f57", "#febc2e", "#28c840"]):
         out.append(f'<circle cx="{20 + i * 20}" cy="17" r="6" fill="{c}"/>')
     out.append(f'<text x="{width / 2}" y="22" text-anchor="middle" class="t">godwin@eggan: ~</text>')
-
-    # Soft green halo behind the head, slowly breathing
-    out.append(
-        f'<ellipse cx="{PAD + ascii_w / 2:.0f}" cy="{ay + ascii_h * 0.45:.0f}" rx="{ascii_w * 0.55:.0f}" '
-        f'ry="{ascii_h * 0.55:.0f}" fill="url(#halo)">'
-        f'<animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/></ellipse>'
-    )
 
     # Matrix rain behind the portrait
     out.append('<g clip-path="url(#asciiArea)" opacity="0.22">')
