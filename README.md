@@ -15,7 +15,7 @@
 
 ---
 
-### ⚡ What I do
+###  What I do
 
 I build full products end to end: the database, the API, the frontend and the AI layer. I run **The Eggan Syndicate**, a small studio building web platforms for clients in Ghana and abroad, and I'm focused on practical AI: document extraction, LLM pipelines and evaluations.
 
@@ -30,6 +30,7 @@ I build full products end to end: the database, the API, the frontend and the AI
   <img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"/>
   <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
   <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/pgvector-336791?style=flat-square&logo=postgresql&logoColor=white"/>
   <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white"/>
   <img src="https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white"/>
   <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/>
@@ -52,6 +53,7 @@ GourmetGems, Gadget Deals, Number One Catering and Peblo's each run as a separat
 
 | Project | What it is | Built with |
 |---|---|---|
+| [**Docs Agent with Evals**](https://github.com/Zadetechd/docs-agent-evals) | A question-answering agent over the FastAPI docs, with a test kit that measures how well it actually works: 28 hand-written questions (simple lookups, multi-step, unanswerable, prompt-injection traps), rule-based scoring, repeated runs and labelled failure causes. Every answer's citations are checked against the text it really retrieved | Python, FastAPI, Postgres + pgvector, Gemini |
 | [**Invoice AI**](https://github.com/Zadetechd/invoice.ai) · [live](https://invoiceai-blue.vercel.app) | Pulls structured data out of invoice images and PDFs, with confidence scores per field and a swappable LLM layer | FastAPI, Gemini vision, React, TypeScript |
 | [**Loure**](https://loure.shop) | My own fashion and accessories store: full admin panel, multi-image product uploads, lookbook sections, and a Gemini script that writes product names and descriptions from photos and lists them in bulk | Next.js, Supabase, Cloudflare R2, Gemini |
 | [**NLR Sepsis Check**](https://nlrsepsis.com) | Free browser tool built from my 202-patient study at KNUST Hospital. Research-based decision support, stores no patient data | HTML, CSS, JavaScript |
